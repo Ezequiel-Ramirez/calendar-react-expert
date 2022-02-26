@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Calendar App](https://user-images.githubusercontent.com/78183135/155861081-1dbc1eb6-e3cd-46d2-9813-2f8eaf85faa3.gif)
 
 ## Available Scripts
 
