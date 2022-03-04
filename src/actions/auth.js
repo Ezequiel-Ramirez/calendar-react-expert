@@ -53,7 +53,7 @@ export const startChecking = () => {
                 name: body.name
             }))
         } else {
-            Swal.fire('Error', body.msg, 'error');
+           
             dispatch(checkingFinish())
         }
     }
@@ -69,3 +69,15 @@ const login = (user) => ({
     type: types.authLogin,
     payload: user
 })
+
+export const startLogout = () => {
+    return async (dispatch) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('token-init-date');
+        dispatch(logout());
+    }
+}
+const logout = () => ({
+    type: types.authLogout
+})
+
