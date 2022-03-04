@@ -1,22 +1,42 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { startLogin } from '../../actions/auth';
+import Swal from 'sweetalert2';
+import { startLogin, startRegister } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
 import './login.css';
 
 export const LoginScreen = () => {
-const dispatch = useDispatch();
-      
-    const [ formLoginValues, handleLoginInputChange] = useForm( {
+    const dispatch = useDispatch();
+
+    const [formLoginValues, handleLoginInputChange] = useForm({
         lEmail: 'ezequielram@gmail.com',
         lPassword: '123456'
-    } );
+    });
+    const [formRegisterValues, handleRegisterInputChange] = useForm({
+        rName: 'Nando',
+        rEmail: 'nando@gmail.com',
+        rPassword: '123456',
+        rConfirmPassword: '123456'
+
+    });
+
 
     const { lEmail, lPassword } = formLoginValues;
 
+    const { rName, rEmail, rPassword, rConfirmPassword } = formRegisterValues;
+
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch( startLogin( lEmail, lPassword ) );
+        dispatch(startLogin(lEmail, lPassword));
+    }
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        console.log(rName, rEmail, rPassword, rConfirmPassword);
+        if(rPassword !== rConfirmPassword){
+            return Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
+        }
+        dispatch(startRegister(rName, rEmail, rPassword));
     }
 
 
@@ -27,13 +47,13 @@ const dispatch = useDispatch();
                     <h3>Ingreso</h3>
                     <form onSubmit={handleLogin}>
                         <div className="form-group">
-                            <input 
+                            <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Correo"
                                 name='lEmail'
-                                value={ lEmail }
-                                onChange={ handleLoginInputChange }
+                                value={lEmail}
+                                onChange={handleLoginInputChange}
                             />
                         </div>
                         <div className="form-group">
@@ -42,15 +62,15 @@ const dispatch = useDispatch();
                                 className="form-control"
                                 placeholder="Contraseña"
                                 name='lPassword'
-                                value={ lPassword }
-                                onChange={ handleLoginInputChange }
+                                value={lPassword}
+                                onChange={handleLoginInputChange}
                             />
                         </div>
                         <div className="form-group">
-                            <input 
+                            <input
                                 type="submit"
                                 className="btnSubmit"
-                                value="Login" 
+                                value="Login"
                             />
                         </div>
                     </form>
@@ -58,12 +78,15 @@ const dispatch = useDispatch();
 
                 <div className="col-md-6 login-form-2">
                     <h3>Registro</h3>
-                    <form>
+                    <form onSubmit={handleRegister}>
                         <div className="form-group">
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Nombre"
+                                name='rName'
+                                value={rName}
+                                onChange={handleRegisterInputChange}
                             />
                         </div>
                         <div className="form-group">
@@ -71,13 +94,19 @@ const dispatch = useDispatch();
                                 type="email"
                                 className="form-control"
                                 placeholder="Correo"
+                                name='rEmail'
+                                value={rEmail}
+                                onChange={handleRegisterInputChange}
                             />
                         </div>
                         <div className="form-group">
                             <input
                                 type="password"
                                 className="form-control"
-                                placeholder="Contraseña" 
+                                placeholder="Contraseña"
+                                name='rPassword'
+                                value={rPassword}
+                                onChange={handleRegisterInputChange}
                             />
                         </div>
 
@@ -85,14 +114,17 @@ const dispatch = useDispatch();
                             <input
                                 type="password"
                                 className="form-control"
-                                placeholder="Repita la contraseña" 
+                                placeholder="Repita la contraseña"
+                                name='rConfirmPassword'
+                                value={rConfirmPassword}
+                                onChange={handleRegisterInputChange}
                             />
                         </div>
 
                         <div className="form-group">
-                            <input 
-                                type="submit" 
-                                className="btnSubmit" 
+                            <input
+                                type="submit"
+                                className="btnSubmit"
                                 value="Crear cuenta" />
                         </div>
                     </form>

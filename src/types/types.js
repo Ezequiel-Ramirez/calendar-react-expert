@@ -11,13 +11,12 @@ export const types = {
     eventUpdated: '[event] Event updated',
     eventDeleted: '[event] Event deleted',
 
-    authChecking: '[auth] Checking login state',
-    authCheckingFinish: `[auth] Finish checking login state`,
-    authStartLogin: `[auth] Start login`,
-    authLogin: `[auth] Login`,
-    authLogout: `[auth] Logout`,
-    authStartRegister: `[auth] Start register`,
-    authStartStartTokenRenew: `[auth] Start token renew`,
+    authCheckingFinish: '[auth] Finish checking login state',
+    authStartLogin: '[auth] Start login',
+    authLogin: '[auth] Login',
+    authLogout: '[auth] Logout',
+    authStartRegister: '[auth] Start register',
+    authStartStartTokenRenew: '[auth] Start token renew',
 
 
 }
